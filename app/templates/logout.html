@@ -1,0 +1,10 @@
+<!-- templates/logout.html -->
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1>Logout</h1>
+<p>Are you sure you want to logout?</p>
+<form method="POST" action="{{ url_for('auth.logout') }}">
+    <button type="submit">Logout</button>
+</form>
+{% endblock %}
