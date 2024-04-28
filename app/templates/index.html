@@ -1,0 +1,16 @@
+<!-- templates/index.html -->
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1>Stories</h1>
+<ul>
+    {% for story in stories %}
+    <li>
+        <a href="{{ url_for('main.view_story', story_id=story.id) }}">{{ story.title }}</a>
+        <a href="{{ url_for('main.delete_story', story_id=story.id) }}">(Delete)</a>
+    </li>
+    {% else %}
+    <li>No stories available.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

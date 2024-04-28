@@ -1,0 +1,11 @@
+<!-- templates/branches.html -->
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1>Branches for "{{ story.title }}"</h1>
+<ul>
+    {% for branch in branches %}
+    <li>{{ branch.content }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

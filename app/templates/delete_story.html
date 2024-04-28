@@ -1,0 +1,10 @@
+<!-- templates/delete_story.html -->
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1>Are you sure you want to delete "{{ story.title }}"?</h1>
+<form method="POST">
+    <button type="submit">Delete Story</button>
+    <a href="{{ url_for('main.index') }}">Cancel</a>
+</form>
+{% endblock %}
