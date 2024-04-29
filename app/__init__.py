@@ -1,8 +1,8 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from .tictactoe import tictactoe
 
-# Create the SQLAlchemy instance
 db = SQLAlchemy()
 
 def create_app():
@@ -22,6 +22,9 @@ def create_app():
 
     from .auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint)
+
+    app.register_blueprint(tictactoe)
+
 
     # Initialize Flask-Login
     login_manager = LoginManager()
