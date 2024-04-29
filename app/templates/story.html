@@ -1,22 +1,8 @@
-<!-- templates/story.html -->
 {% extends 'layout.html' %}
 
 {% block content %}
 <h1>{{ story.title }}</h1>
 <p>{{ story.content }}</p>
-<h2>Branches</h2>
-{% if story.branches %}
-<ul>
-    {% for branch in story.branches %}
-    <li>{{ branch.content }} <a href="{{ url_for('main.delete_branch', branch_id=branch.id) }}">(Remove)</a></li>
-    {% endfor %}
-</ul>
-{% else %}
-<p>No branches added yet.</p>
-{% endif %}
-<form action="{{ url_for('main.add_branch') }}" method="post">
-    <input type="hidden" name="story_id" value="{{ story.id }}">
-    <textarea name="content" required></textarea>
-    <button type="submit">Add Branch</button>
-</form>
+
+<a href="{{ url_for('main.index') }}" class="btn btn-primary">Back to Home</a>
 {% endblock %}

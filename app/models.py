@@ -1,4 +1,4 @@
-from .database import db
+from . import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
@@ -13,14 +13,14 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
-
 class Story(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     content = db.Column(db.Text, nullable=False)
-    branches = db.relationship('Branch', backref='story', lazy='joined')
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)  # ForeignKey to User
 
-class Branch(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.Text, nullable=False)
-    story_id = db.Column(db.Integer, db.ForeignKey('story.id', ondelete='CASCADE'), nullable=False)
+    # Define the relationship with User
+    author = db.relationship('User', backref=db.backref('stories', lazy=True))
+
+    def __repr__(self):
+        return f"Story('{self.title}')"
